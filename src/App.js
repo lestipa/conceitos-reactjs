@@ -3,6 +3,8 @@ import api from './services/api';
 
 import "./styles.css";
 
+import ListRepository from './components/ListRepository';
+
 function App() {
   const [repositories, setRepositories] = useState([]);
 
@@ -36,17 +38,14 @@ function App() {
   return (
     <>
       <ul data-testid="repository-list">
-        {repositories.map(repository => 
-          <>
-          { repository.id &&
-            <li key={repository.id}>
-              {repository.title}
-              <button onClick={() => handleRemoveRepository(repository.id)}>
-                Remover
-              </button>
-            </li>
-          }
-          </>
+        {repositories.map(repository =>
+          <ListRepository 
+            key={repository} 
+            title={repository.title}>
+            <button onClick={() => handleRemoveRepository(repository.id)}>
+              Remover
+            </button>
+          </ListRepository>
         )}
       </ul>
 
