@@ -28,6 +28,7 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
+    console.log(id)
     await api.delete(`repositories/${id}`).then( response => {
         const data = [];
         repositories.map( ( repository ) => data.push(repository.id !== id ? repository : []) );
@@ -38,9 +39,9 @@ function App() {
   return (
     <>
       <ul data-testid="repository-list">
-        {repositories.map(repository =>
+        {repositories.map((repository, index) =>
           <ListRepository 
-            key={repository} 
+            key={index}
             title={repository.title}>
             <button onClick={() => handleRemoveRepository(repository.id)}>
               Remover
