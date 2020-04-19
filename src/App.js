@@ -10,7 +10,6 @@ function App() {
 
   useEffect(() => {
     api.get('repositories').then(response => {
-      // console.log(response)
       setRepositories(response.data);
     })
   }, []);
@@ -28,7 +27,6 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    console.log(id)
     await api.delete(`repositories/${id}`).then( response => {
         const data = [];
         repositories.map( ( repository ) => data.push(repository.id !== id ? repository : []) );
